@@ -2,19 +2,24 @@ import React, { Component } from 'react';
 import '../App.css';
 import Message from './Message.js'
 
-class Toolbar extends Component {
+class Messages extends Component {
   render() {
     return(
       <div>
-      {this.props.messages.map(item => {
+      {this.props.messages.map((item, idx) => {
         return (
           <Message
+            key = {idx}
             text = {item.body}
             subject = {item.subject}
             read = {item.read}
             starred = {item.starred}
             labels = {item.labels}
-            id = {item.id}/>
+            selected = {item.selected}
+            updateSelect = {this.props.updateSelect}
+            readMessage={this.props.readMessage}
+            starToggle={this.props.starToggle}
+            messageId={item.id}/>
         )
       })}
       </div>
@@ -22,4 +27,4 @@ class Toolbar extends Component {
   }
 }
 
-export default Toolbar
+export default Messages
